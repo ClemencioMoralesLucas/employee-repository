@@ -11,7 +11,7 @@ public class Employee {
 
     private String name;
     private Employee manager;
-    private final List<Employee> managed = new ArrayList<>();
+    private final List<Employee> managedEmployees = new ArrayList<>();
 
     public Employee(final String name) {
         this.name = name;
@@ -19,6 +19,10 @@ public class Employee {
 
     public void setManager(final Employee parent) {
         this.manager = parent;
+    }
+
+    public void addManagedEmployee(final Employee managed) {
+        this.managedEmployees.add(managed);
     }
 
     public boolean isRoot() {

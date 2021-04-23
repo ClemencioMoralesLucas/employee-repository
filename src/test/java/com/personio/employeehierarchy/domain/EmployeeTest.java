@@ -2,6 +2,8 @@ package com.personio.employeehierarchy.domain;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.core.Is.is;
@@ -13,6 +15,12 @@ class EmployeeTest {
 
     private static final Employee EMPLOYEE = new Employee(EMPLOYEE_NAME);
     private static final Employee BOSS = new Employee(BOSS_NAME);
+
+    @Test
+    public void itShouldAllowManagedEmployees() {
+        BOSS.addManagedEmployee(EMPLOYEE);
+        assertThat(BOSS.getManagedEmployees(), is(List.of(EMPLOYEE)));
+    }
 
     @Test
     public void itShouldBeRoot() {
