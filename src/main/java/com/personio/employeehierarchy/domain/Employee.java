@@ -5,6 +5,7 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Getter
 public class Employee {
@@ -15,6 +16,10 @@ public class Employee {
 
     public Employee(final String name) {
         this.name = name;
+    }
+
+    public Optional<Employee> getManager() {
+        return Optional.ofNullable(manager);
     }
 
     public void setManager(final Employee parent) {

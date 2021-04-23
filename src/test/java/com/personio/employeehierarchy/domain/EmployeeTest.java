@@ -3,6 +3,7 @@ package com.personio.employeehierarchy.domain;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -18,20 +19,11 @@ class EmployeeTest {
 
     @Test
     public void itShouldAllowManagedEmployees() {
+        assertThat(EMPLOYEE.getManager(), is(Optional.empty()));
+        EMPLOYEE.setManager(BOSS);
         BOSS.addManagedEmployee(EMPLOYEE);
         assertThat(BOSS.getManagedEmployees(), is(List.of(EMPLOYEE)));
-    }
-
-    @Test
-    public void itShouldBeRoot() {
-        assertThat(EMPLOYEE.isRoot(), is(true));
-    }
-
-    @Test
-    public void itShouldNotBeRoot() {
-        final var employee = new Employee(EMPLOYEE_NAME);
-        employee.setManager(BOSS);
-        assertThat(employee.isRoot(), is(false));
+        assertThat(EMPLOYEE.getManager(), is(Optional.of(BOSS)));
     }
 
     @Test
@@ -64,5 +56,17 @@ class EmployeeTest {
         assertThat(EMPLOYEE.hashCode(), is(equalTo(employee.hashCode())));
         employee.setManager(BOSS);
         assertThat(EMPLOYEE.hashCode(), is(equalTo(employee.hashCode())));
+    }
+
+    @Test
+    public void itShouldBeRoot() {
+        final Employee employee = new Employee(EMPLOYEE_NAME);
+        assertThat(employee.isRoot(), is(true));    }
+
+    @Test
+    public void itShouldNotBeRoot() {
+        final var employee = new Employee(EMPLOYEE_NAME);
+        employee.setManager(BOSS);
+        assertThat(employee.isRoot(), is(false));
     }
 }
