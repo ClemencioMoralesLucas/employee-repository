@@ -39,7 +39,7 @@ public class Organization {
         if (MAXIMUM_ROOTS_ALLOWED < employeeRepository.countRoots()) {
             final var roots = employeeRepository.findRoots().stream().collect(toList()).stream()
                     .map(Employee::getName).collect(toList());
-            throw new IllegalArgumentException("ERROR: Multiple roots detected: " + roots);
+            throw new InvalidOrganizationException("ERROR: Multiple roots detected: " + roots);
         }
     }
 
@@ -47,7 +47,7 @@ public class Organization {
         if (!employee.isRoot()) {
             employee.getManager().ifPresent(manager -> {
                 if (manager.equals(other)) {
-                    throw new IllegalArgumentException(format("ERROR: Cyclic dependency detected" +
+                    throw new InvalidOrganizationException(format("ERROR: Cyclic dependency detected" +
                             "for employee [%s]", employee.getName()));
                 }
                 checkCyclicDep(manager, employee);

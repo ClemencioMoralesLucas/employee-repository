@@ -77,7 +77,7 @@ class OrganizationTest {
     @Test
     public void itShouldFailIfAddingEmployeesWithMoreThanOneRoot() {
         when(employeeRepositoryMock.countRoots()).thenReturn(2L);
-        final Exception exception = assertThrows(IllegalArgumentException.class,
+        final Exception exception = assertThrows(InvalidOrganizationException.class,
                 () -> organization.verifySingleRoot());
         assertThat(exception.getMessage(), is("ERROR: Multiple roots detected: []"));
     }
