@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: Employee Hierarchy
+  datasource:
+    url: jdbc:h2:file:./target/organization.database
+    #    url: jdbc:h2:file:./data/demo
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+    jpa:
+      database-platform: org.hibernate.dialect.H2Dialect
+  main:
+    allow-bean-definition-overriding: true
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+server:
+  error:
+    include-message: always
