@@ -5,6 +5,7 @@ import com.personio.employeehierarchy.domain.Organization;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.util.Map;
 import java.util.Optional;
 
@@ -22,6 +23,7 @@ public class OrganizationService {
         return organization.getEmployee(employeeName);
     }
 
+    @Transactional
     public void addEmployees(final Map<String, String> newEmployees) {
         newEmployees.forEach(organization::addEmployee);
         organization.verifySingleRoot();

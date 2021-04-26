@@ -3,6 +3,13 @@ package com.personio.employeehierarchy.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -10,10 +17,20 @@ import java.util.Optional;
 
 @NoArgsConstructor
 @Getter
+@Entity
 public class Employee {
 
+    @Id
+    @GeneratedValue
+    private Long id;
+
     private String name;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "manager")
     private Employee manager;
+
+    @OneToMany
     private final List<Employee> managedEmployees = new ArrayList<>();
 
     public Employee(final String name) {
