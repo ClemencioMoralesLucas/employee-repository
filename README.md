@@ -73,6 +73,14 @@ Actual Output:
 }
 ```
 
+HTTP Response:
+
+<p align="center">
+  <a href="https://httpstatusdogs.com/400-bad-request">
+    <img alt="Bad Request" title="BadRequest" src="https://httpstatusdogs.com/img/400.jpg" width="450">
+  </a>
+</p>
+
 ##### 2 - Valid JSON input for POST Organization (POST Endpoint - Happy Path):
 
 ```
@@ -98,6 +106,13 @@ Actual Output:
     }
 }
 ```
+HTTP Response:
+
+<p align="center">
+  <a href="https://httpstatusdogs.com/200-ok">
+    <img alt="OK" title="OK" src="https://httpstatusdogs.com/img/200.jpg" width="450">
+  </a>
+</p>
 
 ##### 3 - Getting employee-self hierarchy (GET Endpoint after executing 2 - Happy Path):
 
@@ -116,6 +131,14 @@ Actual Output:
     }
 }
 ```
+
+HTTP Response:
+
+<p align="center">
+  <a href="https://httpstatusdogs.com/200-ok">
+    <img alt="OK" title="OK" src="https://httpstatusdogs.com/img/200.jpg" width="450">
+  </a>
+</p>
 
 ## Assumptions
 
