@@ -36,20 +36,20 @@ the ```Hierarchy GmbH``` specs.
 
 This repository fulfills the following business-written features:
 
-### \#1 
+##### 1
 I would like a pure REST API to post the JSON from Chris. I would like to have a properly formatted JSON which reflects the employee hierarchy.
-### \#2 
+##### 2
 I would like the API to be secure so that only I can use it.
-### \#3 
+##### 3 
 Avoid nonsense hierarchies that contain loops or multiple roots.
-### \#4 
+##### 4 
 I would really like it if the hierarchy could be stored in a relational database.
-### \#5 
+##### 5 
 I want to send the name of an employee to an endpoint, and receive the name of the supervisor and the name of the supervisor’s supervisor in return.
 
 ## Examples
 
-##### 1 - Invalid JSON input for POST Organization:
+##### 1 - Invalid JSON input for POST Organization (POST Endpoint - Unhappy Path):
 
 ```
 {
@@ -73,7 +73,7 @@ Actual Output:
 }
 ```
 
-##### 2 - Valid JSON input for POST Organization:
+##### 2 - Valid JSON input for POST Organization (POST Endpoint - Happy Path):
 
 ```
 {
@@ -93,6 +93,24 @@ Actual Output:
             "Nick": {
                 "Pete": {},
                 "Barbara": {}
+            }
+        }
+    }
+}
+```
+
+##### 3 - Getting employee-self hierarchy (GET Endpoint after executing 2 - Happy Path):
+
+Query: ```http://localhost:8080/api/v1/organization/employee/Pete/management```
+
+Actual Output:
+
+```
+{
+    "Pete": {
+        "Nick": {
+            "Sophie": {
+                "Jonas": {}
             }
         }
     }
