@@ -23,18 +23,12 @@ public class OrganizationController {
 
     private final OrganizationService organizationService;
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public Map<String, Map> getOrganizationService() {
-        log.info(this.getClass().getSimpleName() + "-> getOrganization");
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Map<String, Map> setOrganizationService(@RequestBody final Map<String, String> employeesMap) {
+        log.info(this.getClass().getSimpleName() + "-> setOrganization");
+        organizationService.addEmployees(employeesMap);
         return HierarchicalOrganization.assembleTopDownHierarchy(organizationService
                 .getRoot().map(List::of).orElse(List.of()));
-    }
-
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void setOrganizationService(@RequestBody final Map<String, String> employeesMap) {
-        log.info(this.getClass().getSimpleName() + "-> setOrganization");
-        log.info("Controller calling service with " + employeesMap);
-        organizationService.addEmployees(employeesMap);
     }
 
     @GetMapping(value = "employee/{employeeName}/management",

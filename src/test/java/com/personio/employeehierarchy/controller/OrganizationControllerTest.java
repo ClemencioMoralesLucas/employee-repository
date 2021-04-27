@@ -53,9 +53,15 @@ class OrganizationControllerTest {
     }
 
     @Test
-    public void itShouldForwardCallToServiceWhenSettingOrganization() {
-        organizationController.setOrganizationService(foxhoundEmployees);
+    public void itShouldForwardCallToServiceWhenSettingOrganizationAndReturnFormattedOrganization() {
+        when(organizationServiceMock.getRoot())
+                .thenReturn(Optional.of(new Employee(GRAY_FOX_NAME)));
+        final var expectedResultMap =
+                organizationController.setOrganizationService(foxhoundEmployees);
         verify(organizationServiceMock).addEmployees(foxhoundEmployees);
+        verify(organizationServiceMock).getRoot();
+        assertThat(expectedResultMap,
+                is(Collections.unmodifiableMap(Map.of(GRAY_FOX_NAME, Map.of()))));
         verifyNoMoreInteractions(organizationServiceMock);
     }
 
@@ -67,22 +73,5 @@ class OrganizationControllerTest {
                 is(Collections.unmodifiableMap(Map.of(SOLID_SNAKE_NAME, Map.of()))));
         verify(organizationServiceMock).getEmployee(SOLID_SNAKE_NAME);
         verifyNoMoreInteractions(organizationServiceMock);
-    }
-
-    @Test
-    public void itShouldReturnHierarchyWithRootWhenCallingGetOrganization() {
-        when(organizationServiceMock.getRoot())
-                .thenReturn(Optional.of(new Employee(GRAY_FOX_NAME)));
-        assertThat(organizationController.getOrganizationService(),
-                is(Collections.unmodifiableMap(Map.of(GRAY_FOX_NAME, Map.of()))));
-        verify(organizationServiceMock).getRoot();
-        verifyNoMoreInteractions(organizationServiceMock);
-    }
-
-    @Test
-    public void itShouldReturnEmptyOrganizationWhenCallingGetOrganization() {
-        when(organizationServiceMock.getRoot()).thenReturn(Optional.empty());
-        assertThat(organizationController.getOrganizationService(),
-                is(Collections.unmodifiableMap(Map.of())));
     }
 }
