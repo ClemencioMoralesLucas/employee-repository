@@ -33,6 +33,7 @@ public class OrganizationController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public void setOrganizationService(@RequestBody final Map<String, String> employeesMap) {
         log.info(this.getClass().getSimpleName() + "-> setOrganization");
+        log.info("Controller calling service with " + employeesMap);
         organizationService.addEmployees(employeesMap);
     }
 

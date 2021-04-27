@@ -2,18 +2,34 @@ spring:
   application:
     name: Employee Hierarchy
   datasource:
-    url: jdbc:h2:file:./target/organization.database
-    #    url: jdbc:h2:file:./data/demo
+#    url: jdbc:h2:file:./target/organization.database
+#    url: jdbc:h2:file:./data/demo;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:h2:mem:testdb
+    platform: h2
     driver-class-name: org.h2.Driver
     username: sa
     password: password
     jpa:
       database-platform: org.hibernate.dialect.H2Dialect
+      hibernate:
+          ddl-auto: update
+      properties:
+        hibernate:
+          show_sql: true
+          use_sql_comments: true
+          format_sql: true
   main:
     allow-bean-definition-overriding: true
   jackson:
     serialization:
       FAIL_ON_EMPTY_BEANS: false
+  h2:
+    console:
+      enabled: true
+  data:
+    jpa:
+      repositories:
+        bootstrap-mode: default
 server:
   error:
     include-message: always
