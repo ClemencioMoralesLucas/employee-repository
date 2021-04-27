@@ -48,7 +48,7 @@ public class Organization {
             employee.getManager().ifPresent(manager -> {
                 if (manager.equals(other)) {
                     throw new InvalidOrganizationException(format("ERROR: Cyclic dependency detected" +
-                            "for employee [%s]", employee.getName()));
+                            " for employee [%s]", employee.getName()));
                 }
                 checkCyclicDep(manager, employee);
             });
