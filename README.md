@@ -49,7 +49,7 @@ I want to send the name of an employee to an endpoint, and receive the name of t
 
 ## Examples
 
-1) Invalid JSON input for POST Organization:
+##### 1 - Invalid JSON input for POST Organization:
 
 ```
 {
@@ -61,7 +61,7 @@ I want to send the name of an employee to an endpoint, and receive the name of t
 }
 ```
 
-Expected Output:
+Actual Output:
 
 ```
 {
@@ -70,6 +70,32 @@ Expected Output:
     "error": "Bad Request",
     "message": "ERROR: Cyclic dependency detected for employee [Jonas]",
     "path": "/api/v1/organization"
+}
+```
+
+##### 2 - Valid JSON input for POST Organization:
+
+```
+{
+"Pete": "Nick",
+"Barbara": "Nick",
+"Nick": "Sophie",
+"Sophie": "Jonas"
+}
+```
+
+Actual Output:
+
+```
+{
+    "Jonas": {
+        "Sophie": {
+            "Nick": {
+                "Pete": {},
+                "Barbara": {}
+            }
+        }
+    }
 }
 ```
 
