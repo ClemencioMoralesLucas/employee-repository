@@ -311,5 +311,4 @@ The following aspects would be a nice-to-have:
 * (+) Docker?
 * (+) Script for pushing - get to tha choppa
 * (-) add an index to employee name field in database
-* (-) whitelabel error page JUST for accessing from browser (i.e GET instead POST)
 * (+) FINAL CHECK: Ensure all in the PDF works properly
