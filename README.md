@@ -267,19 +267,19 @@ Actual Output:
 
 ```
 {
-    "timestamp": "2021-04-28T08:25:13.273+00:00",
-    "status": 400,
-    "error": "Bad Request",
+    "timestamp": "2021-04-28T08:36:05.271+00:00",
+    "status": 404,
+    "error": "Not Found",
     "message": "Employee not found",
-    "path": "/api/v1/organization/employee/someone/management"
+    "path": "/api/v1/organization/employee/noone/management"
 }
 ```
 
 HTTP Response:
 
 <p align="center">
-  <a href="https://httpstatusdogs.com/400-bad-request">
-    <img alt="Bad Request" title="BadRequest" src="https://httpstatusdogs.com/img/400.jpg" width="450">
+  <a href="https://httpstatusdogs.com/404-not-found">
+    <img alt="Not Found" title="NotFound" src="https://httpstatusdogs.com/img/404.jpg" width="450">
   </a>
 </p>
 
@@ -293,12 +293,13 @@ HTTP Response:
 
 The following aspects would be a nice-to-have:
 * (+) error mapping whitelabel
+* (+) fix zipkin warn
 * (+) auth
 * (+) PostMan Collection with use cases (and export it &  link it)
-* (+) Acceptance tests
+* (+) Acceptance, smoke, IT tests
 * (+) Refactor getEmployee to its own EmployeeController?
-* (+) Explain in the readme mvn clean verify + jacoco + images
-* (+) Makefile?
+* (+) Explain in the readme mvn clean verify + jacoco + images, h2 console
+* (+) Makefile to run springboot?
 * (+) Docker?
 * (+) Script for pushing - get to tha choppa
 * (+) swagger doc
