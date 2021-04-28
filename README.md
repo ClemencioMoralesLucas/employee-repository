@@ -150,7 +150,7 @@ HTTP Response:
 The following aspects would be a nice-to-have:
 * (+) Ensure all in the PDF works properly
 * (+) auth
-* (+) PostMan Collection with use cases
+* (+) PostMan Collection with use cases (and export it &  link it)
 * (+) Acceptance tests
 * (+) Refactor getEmployee to its own EmployeeController?
 * (+) Explain in the readme mvn clean verify + jacoco + images
