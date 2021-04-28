@@ -57,11 +57,11 @@ class OrganizationControllerTest {
     }
 
     @Test
-    public void itShouldForwardCallToServiceWhenSettingOrganizationAndReturnFormattedOrganization() {
+    public void itShouldForwardCallToServiceWhenSettingEmployeesAndReturnFormattedOrganization() {
         when(organizationServiceMock.getRoot())
                 .thenReturn(Optional.of(new Employee(GRAY_FOX_NAME)));
         final var expectedResultMap =
-                organizationController.setOrganizationService(foxhoundEmployees);
+                organizationController.setEmployees(foxhoundEmployees);
         verify(organizationServiceMock).addEmployees(foxhoundEmployees);
         verify(organizationServiceMock).getRoot();
         assertThat(expectedResultMap,
@@ -72,7 +72,7 @@ class OrganizationControllerTest {
     @Test
     public void itShouldThrowInvalidOrganizationExceptionIfInvalidJsonGiven() {
         final Exception exception = assertThrows(InvalidOrganizationException.class, () -> {
-            organizationController.setOrganizationService(null);
+            organizationController.setEmployees(null);
         });
         assertThat(exception.getMessage(), is(OrganizationController.INVALID_OR_EMPTY_JSON_MESSAGE));
         verifyNoMoreInteractions(organizationServiceMock);
@@ -82,7 +82,7 @@ class OrganizationControllerTest {
     public void itShouldThrowInvalidOrganizationExceptionIfEmptyJsonGiven() {
         final Map<String, String> emptyMap = Collections.unmodifiableMap(Map.of());
         final Exception exception = assertThrows(InvalidOrganizationException.class, () -> {
-            organizationController.setOrganizationService(emptyMap);
+            organizationController.setEmployees(emptyMap);
         });
         assertThat(exception.getMessage(), is(OrganizationController.INVALID_OR_EMPTY_JSON_MESSAGE));
         verifyNoMoreInteractions(organizationServiceMock);
