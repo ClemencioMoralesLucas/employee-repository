@@ -113,7 +113,59 @@ HTTP Response:
   </a>
 </p>
 
-##### 3 - Valid JSON input for POST Organization (POST Endpoint - Happy Path with sorted supervisor list):
+##### 3 - Malformed JSON input for POST Organization (POST Endpoint - Unhappy Path - Not a JSON):
+
+```
+this is not a JSON!
+```
+
+Actual Output:
+
+```
+{
+    "timestamp": "2021-04-28T07:27:27.281+00:00",
+    "status": 400,
+    "error": "Bad Request",
+    "message": "JSON parse error: Unrecognized token 'this': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false'); nested exception is com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'this': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')\n at [Source: (PushbackInputStream); line: 1, column: 6]",
+    "path": "/api/v1/organization"
+}
+```
+
+HTTP Response:
+
+<p align="center">
+  <a href="https://httpstatusdogs.com/400-bad-request">
+    <img alt="Bad Request" title="BadRequest" src="https://httpstatusdogs.com/img/400.jpg" width="450">
+  </a>
+</p>
+
+##### 4 - Empty JSON input for POST Organization (POST Endpoint - Unhappy Path - Empty JSON not to be saved to avoid unnecessary db calls):
+
+```
+{}
+```
+
+Actual Output:
+
+```
+{
+    "timestamp": "2021-04-28T07:54:49.529+00:00",
+    "status": 400,
+    "error": "Bad Request",
+    "message": "Invalid or empty JSON",
+    "path": "/api/v1/organization"
+}
+```
+
+HTTP Response:
+
+<p align="center">
+  <a href="https://httpstatusdogs.com/400-bad-request">
+    <img alt="Bad Request" title="BadRequest" src="https://httpstatusdogs.com/img/400.jpg" width="450">
+  </a>
+</p>
+
+##### 5 - Valid JSON input for POST Organization (POST Endpoint - Happy Path with sorted supervisor list):
 
 ```
 {
@@ -146,7 +198,7 @@ HTTP Response:
   </a>
 </p>
 
-##### 4 - Valid JSON input for POST Organization (POST Endpoint - Happy Path with unsorted supervisor list - edge case):
+##### 6 - Valid JSON input for POST Organization (POST Endpoint - Happy Path with unsorted supervisor list - edge case):
 
 ```
 {
@@ -181,7 +233,7 @@ HTTP Response:
   </a>
 </p>
 
-##### 5 - Getting employee-self hierarchy (GET Endpoint after executing - Happy Path with sorted supervisor list):
+##### 7 - Getting employee-self hierarchy (GET Endpoint after executing - Happy Path with sorted supervisor list):
 
 Query: ```http://localhost:8080/api/v1/organization/employee/Pete/management```
 
@@ -215,7 +267,8 @@ HTTP Response:
 ## TODO List
 
 The following aspects would be a nice-to-have:
-* (+) Ensure all in the PDF works properly - control {} and invalid JSON for POST and non-existent name for GET 
+* (+) Ensure all in the PDF works properly - control non-existent name for GET 
+* (+) error mapping whitelabel
 * (+) auth
 * (+) PostMan Collection with use cases (and export it &  link it)
 * (+) Acceptance tests

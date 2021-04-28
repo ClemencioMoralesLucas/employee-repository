@@ -1,6 +1,7 @@
 package com.personio.employeehierarchy.controller;
 
 import com.personio.employeehierarchy.domain.Employee;
+import com.personio.employeehierarchy.domain.InvalidOrganizationException;
 import com.personio.employeehierarchy.service.OrganizationService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,7 @@ import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
@@ -62,6 +64,25 @@ class OrganizationControllerTest {
         verify(organizationServiceMock).getRoot();
         assertThat(expectedResultMap,
                 is(Collections.unmodifiableMap(Map.of(GRAY_FOX_NAME, Map.of()))));
+        verifyNoMoreInteractions(organizationServiceMock);
+    }
+
+    @Test
+    public void itShouldThrowInvalidOrganizationExceptionIfInvalidJsonGiven() {
+        final Exception exception = assertThrows(InvalidOrganizationException.class, () -> {
+            organizationController.setOrganizationService(null);
+        });
+        assertThat(exception.getMessage(), is(OrganizationController.INVALID_OR_EMPTY_JSON_MESSAGE));
+        verifyNoMoreInteractions(organizationServiceMock);
+    }
+
+    @Test
+    public void itShouldThrowInvalidOrganizationExceptionIfEmptyJsonGiven() {
+        final Map<String, String> emptyMap = Collections.unmodifiableMap(Map.of());
+        final Exception exception = assertThrows(InvalidOrganizationException.class, () -> {
+            organizationController.setOrganizationService(emptyMap);
+        });
+        assertThat(exception.getMessage(), is(OrganizationController.INVALID_OR_EMPTY_JSON_MESSAGE));
         verifyNoMoreInteractions(organizationServiceMock);
     }
 
