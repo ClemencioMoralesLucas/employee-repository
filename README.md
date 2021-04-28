@@ -314,14 +314,15 @@ added to the project. After running ```mvn clean verify```, these reports can be
 
 ## TODO List
 
-The following aspects would be a nice-to-have:
+The following aspects are a must-have:
 * (+) auth
 * (+) Acceptance, smoke, IT tests
-* (+) Refactor getEmployee to its own EmployeeController?
 * (+) PostMan Collection with use cases (and export it &  link it)
-* (+) fix zipkin warn
-* (+) Makefile to run springboot? (document it in readme)
-* (+) swagger doc
-* (+) Docker?
-* (+) Script for pushing - get to tha choppa
 * (+) FINAL CHECK: Ensure all in the PDF works properly
+
+The following aspects would be a nice-to-have:
+* (-) fix zipkin warn
+* (-) Makefile to run springboot? (document it in readme)
+* (-) swagger doc
+* (-) Docker?
+* (-) Script for pushing - get to tha choppa
