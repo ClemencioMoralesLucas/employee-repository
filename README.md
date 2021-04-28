@@ -306,6 +306,11 @@ added to the project. After running ```mvn clean verify```, these reports can be
 * The H2 Admin Console has been added to simplify any management-related operations
  with the database, and can be accessed through ```http://localhost:8080/h2-console/login.do```
  after launching the application.
+ 
+ * The H2 Database has been indexed via the field ```EMPLOYEE.NAME``` to boost performance.
+ It was possible to achieve this index creation in one fell swoop during the init
+ script, ```schema.sql```, thanks to adding the flag ```mode=mysql``` to the datasource url in 
+ ```application.yml```.
 
 ## TODO List
 
@@ -319,5 +324,4 @@ The following aspects would be a nice-to-have:
 * (+) swagger doc
 * (+) Docker?
 * (+) Script for pushing - get to tha choppa
-* (-) add an index to employee name field in database
 * (+) FINAL CHECK: Ensure all in the PDF works properly
