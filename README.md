@@ -25,6 +25,7 @@
 - [Features](#features)
 - [Examples](#examples)
 - [Assumptions](#assumptions)
+- [Notes](#notes)
 - [TODO](#todo)
 
 ## Introduction
@@ -289,19 +290,26 @@ HTTP Response:
 * An empty ({}) organization will not be accepted to boost throughput and to avoid an unnecessary database call.
 * The system is to be protected for a single user with credentials "user" and "password"
 
+## Notes
+
+* The branch ```custom-whitelabel``` contains a commit with a mechanism to show HTML pages when 
+404, 500 and generic errors appear using the REST API. In order to be more specific regarding
+errors (cycles/multiple roots), this work has not been merged into master, but it is available
+in the aforementioned branch for further reference. 
+
 ## TODO List
 
 The following aspects would be a nice-to-have:
-* (+) error mapping whitelabel
-* (+) fix zipkin warn
 * (+) auth
-* (+) PostMan Collection with use cases (and export it &  link it)
 * (+) Acceptance, smoke, IT tests
 * (+) Refactor getEmployee to its own EmployeeController?
+* (+) PostMan Collection with use cases (and export it &  link it)
+* (+) fix zipkin warn
+* (+) Makefile to run springboot? (document it in readme)
 * (+) Explain in the readme mvn clean verify + jacoco + images, h2 console
-* (+) Makefile to run springboot?
+* (+) swagger doc
 * (+) Docker?
 * (+) Script for pushing - get to tha choppa
-* (+) swagger doc
 * (-) add an index to employee name field in database
+* (-) whitelabel error page JUST for accessing from browser (i.e GET instead POST)
 * (+) FINAL CHECK: Ensure all in the PDF works properly
