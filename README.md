@@ -297,6 +297,16 @@ HTTP Response:
 errors (cycles/multiple roots), this work has not been merged into master, but it is available
 in the aforementioned branch for further reference. 
 
+* In order to run all tests, ```mvn clean verify``` can be executed from the Terminal.
+Apart from executing all tests, it generate an extensive report thanks to 
+[JaCoCo](https://www.eclemma.org/jacoco/), that has been
+added to the project. After running ```mvn clean verify```, these reports can be analyzed at 
+```http://localhost:63342/employee-hierarchy/target/site/jacoco/index.html```
+
+* The H2 Admin Console has been added to simplify any management-related operations
+ with the database, and can be accessed through ```http://localhost:8080/h2-console/login.do```
+ after launching the application.
+
 ## TODO List
 
 The following aspects would be a nice-to-have:
@@ -306,7 +316,6 @@ The following aspects would be a nice-to-have:
 * (+) PostMan Collection with use cases (and export it &  link it)
 * (+) fix zipkin warn
 * (+) Makefile to run springboot? (document it in readme)
-* (+) Explain in the readme mvn clean verify + jacoco + images, h2 console
 * (+) swagger doc
 * (+) Docker?
 * (+) Script for pushing - get to tha choppa
