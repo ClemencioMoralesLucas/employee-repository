@@ -287,8 +287,13 @@ HTTP Response:
 ## Assumptions
 
 * Every employee name is unique and cannot be duplicated.
-* An empty ({}) organization will not be accepted to boost throughput and to avoid an unnecessary database call.
-* The system is to be protected for a single user with credentials "user" and "password"
+* An empty (```{}```) organization will not be accepted to boost throughput and to avoid an unnecessary database call.
+* The system is to be protected for a single user with credentials ```user``` and ```password```. 
+Simply putting these two credentials on ```Authorization``` tab (```Basic Auth``` as ```Type``` in 
+[PostMan](https://www.postman.com/)) will allow the user to operate the ```REST API```.
+ It is important to note that, for simplicity, the password is plain-text on the file, but on a real 
+ application this should be encoded 
+ (i.e: using ```PasswordEncoderFactories.createDelegatingPasswordEncoder()```)
 
 ## Notes
 
@@ -315,7 +320,6 @@ added to the project. After running ```mvn clean verify```, these reports can be
 ## TODO List
 
 The following aspects are a must-have:
-* (+) auth
 * (+) Acceptance, smoke, IT tests
 * (+) PostMan Collection with use cases (and export it &  link it)
 * (+) FINAL CHECK: Ensure all in the PDF works properly
