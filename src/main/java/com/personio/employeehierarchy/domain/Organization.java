@@ -1,5 +1,6 @@
 package com.personio.employeehierarchy.domain;
 
+import com.personio.employeehierarchy.domain.exceptions.InvalidOrganizationException;
 import com.personio.employeehierarchy.persistence.EmployeeRepository;
 import org.springframework.stereotype.Component;
 

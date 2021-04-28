@@ -1,7 +1,8 @@
 package com.personio.employeehierarchy.controller;
 
 import com.personio.employeehierarchy.domain.HierarchicalOrganization;
-import com.personio.employeehierarchy.domain.InvalidOrganizationException;
+import com.personio.employeehierarchy.domain.exceptions.InvalidOrganizationException;
+import com.personio.employeehierarchy.domain.exceptions.NotFoundEmployeeException;
 import com.personio.employeehierarchy.service.OrganizationService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 @Slf4j
 @RestController
@@ -24,6 +26,7 @@ import java.util.Map;
 public class OrganizationController {
 
     public static final String INVALID_OR_EMPTY_JSON_MESSAGE = "Invalid or empty JSON";
+    public static final String EMPLOYEE_NOT_FOUND_MESSAGE = "Employee not found";
 
     private final OrganizationService organizationService;
 
@@ -40,8 +43,12 @@ public class OrganizationController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Map<String, Map> getEmployee(@PathVariable(value = "employeeName") final String employeeName) {
         log.info(this.getClass().getSimpleName() + "-> getEmployee");
-        return HierarchicalOrganization.assembleBottomUpHierarchy(organizationService.
-                getEmployee(employeeName).get());
+        try {
+            return HierarchicalOrganization.assembleBottomUpHierarchy(organizationService.
+                    getEmployee(employeeName).get());
+        } catch (final NoSuchElementException e) {
+            throw new NotFoundEmployeeException(EMPLOYEE_NOT_FOUND_MESSAGE);
+        }
     }
 
     private void validateInputMap(final Map<String, String> employeesMap) {

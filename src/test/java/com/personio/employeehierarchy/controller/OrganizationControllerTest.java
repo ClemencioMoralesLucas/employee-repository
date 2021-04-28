@@ -1,7 +1,8 @@
 package com.personio.employeehierarchy.controller;
 
 import com.personio.employeehierarchy.domain.Employee;
-import com.personio.employeehierarchy.domain.InvalidOrganizationException;
+import com.personio.employeehierarchy.domain.exceptions.InvalidOrganizationException;
+import com.personio.employeehierarchy.domain.exceptions.NotFoundEmployeeException;
 import com.personio.employeehierarchy.service.OrganizationService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,6 +33,7 @@ class OrganizationControllerTest {
     private static final String BIG_BOSS_NAME = "Big Boss";
     private static final String SOLID_SNAKE_NAME = "Solid Snake";
     private static final String GRAY_FOX_NAME = "Gray Fox";
+    private static final String NON_EXISTENT_EMPLOYEE = "Decoy Octopus";
 
     @InjectMocks
     OrganizationController organizationController;
@@ -93,6 +95,16 @@ class OrganizationControllerTest {
         assertThat(organizationController.getEmployee(SOLID_SNAKE_NAME),
                 is(Collections.unmodifiableMap(Map.of(SOLID_SNAKE_NAME, Map.of()))));
         verify(organizationServiceMock).getEmployee(SOLID_SNAKE_NAME);
+        verifyNoMoreInteractions(organizationServiceMock);
+    }
+
+    @Test
+    public void itShouldReturnInvalidOrganizationExceptionWhenGettingNonExistentEmployee() {
+        final Exception exception = assertThrows(NotFoundEmployeeException.class, () -> {
+            organizationController.getEmployee(NON_EXISTENT_EMPLOYEE);
+        });
+        assertThat(exception.getMessage(), is(OrganizationController.EMPLOYEE_NOT_FOUND_MESSAGE));
+        verify(organizationServiceMock).getEmployee(NON_EXISTENT_EMPLOYEE);
         verifyNoMoreInteractions(organizationServiceMock);
     }
 }

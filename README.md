@@ -259,15 +259,39 @@ HTTP Response:
   </a>
 </p>
 
+##### 8 - Getting employee-self hierarchy (GET Endpoint after executing - Unhappy Path with non-existent name):
+
+Query: ```http://localhost:8080/api/v1/organization/employee/someone/management```
+
+Actual Output:
+
+```
+{
+    "timestamp": "2021-04-28T08:25:13.273+00:00",
+    "status": 400,
+    "error": "Bad Request",
+    "message": "Employee not found",
+    "path": "/api/v1/organization/employee/someone/management"
+}
+```
+
+HTTP Response:
+
+<p align="center">
+  <a href="https://httpstatusdogs.com/400-bad-request">
+    <img alt="Bad Request" title="BadRequest" src="https://httpstatusdogs.com/img/400.jpg" width="450">
+  </a>
+</p>
+
 ## Assumptions
 
 * Every employee name is unique and cannot be duplicated.
+* An empty ({}) organization will not be accepted to boost throughput and to avoid an unnecessary database call.
 * The system is to be protected for a single user with credentials "user" and "password"
 
 ## TODO List
 
 The following aspects would be a nice-to-have:
-* (+) Ensure all in the PDF works properly - control non-existent name for GET 
 * (+) error mapping whitelabel
 * (+) auth
 * (+) PostMan Collection with use cases (and export it &  link it)
@@ -279,3 +303,4 @@ The following aspects would be a nice-to-have:
 * (+) Script for pushing - get to tha choppa
 * (+) swagger doc
 * (-) add an index to employee name field in database
+* (+) FINAL CHECK: Ensure all in the PDF works properly
