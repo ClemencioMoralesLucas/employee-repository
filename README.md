@@ -49,7 +49,7 @@ I want to send the name of an employee to an endpoint, and receive the name of t
 
 ## Examples
 
-##### 1 - Invalid JSON input for POST Organization (POST Endpoint - Unhappy Path):
+##### 1 - Invalid JSON input for POST Organization (POST Endpoint - Unhappy Path - Cycles/Loops detected):
 
 ```
 {
@@ -81,7 +81,39 @@ HTTP Response:
   </a>
 </p>
 
-##### 2 - Valid JSON input for POST Organization (POST Endpoint - Happy Path):
+##### 2 - Invalid JSON input for POST Organization (POST Endpoint - Unhappy Path - Multiple Roots detected):
+
+```
+{
+"Pete": "Nick",
+"Barbara": "Nick",
+"Nick": "Sophie",
+"Sophie": "Jonas",
+"John": "Sarah"
+}
+```
+
+Actual Output:
+
+```
+{
+    "timestamp": "2021-04-28T07:16:08.681+00:00",
+    "status": 400,
+    "error": "Bad Request",
+    "message": "ERROR: Multiple roots detected: [Jonas, Sarah]",
+    "path": "/api/v1/organization"
+}
+```
+
+HTTP Response:
+
+<p align="center">
+  <a href="https://httpstatusdogs.com/400-bad-request">
+    <img alt="Bad Request" title="BadRequest" src="https://httpstatusdogs.com/img/400.jpg" width="450">
+  </a>
+</p>
+
+##### 3 - Valid JSON input for POST Organization (POST Endpoint - Happy Path with sorted supervisor list):
 
 ```
 {
@@ -114,7 +146,42 @@ HTTP Response:
   </a>
 </p>
 
-##### 3 - Getting employee-self hierarchy (GET Endpoint after executing 2 - Happy Path):
+##### 4 - Valid JSON input for POST Organization (POST Endpoint - Happy Path with unsorted supervisor list - edge case):
+
+```
+{
+"Pete": "Nick",
+"Barbara": "Nick",
+"Nick": "Sophie",
+"John": "Nick",
+"Sophie": "Jonas"
+}
+```
+
+Actual Output:
+
+```
+{
+    "Jonas": {
+        "Sophie": {
+            "Nick": {
+                "Pete": {},
+                "Barbara": {},
+                "John": {}
+            }
+        }
+    }
+}
+```
+HTTP Response:
+
+<p align="center">
+  <a href="https://httpstatusdogs.com/200-ok">
+    <img alt="OK" title="OK" src="https://httpstatusdogs.com/img/200.jpg" width="450">
+  </a>
+</p>
+
+##### 5 - Getting employee-self hierarchy (GET Endpoint after executing - Happy Path with sorted supervisor list):
 
 Query: ```http://localhost:8080/api/v1/organization/employee/Pete/management```
 
@@ -148,7 +215,7 @@ HTTP Response:
 ## TODO List
 
 The following aspects would be a nice-to-have:
-* (+) Ensure all in the PDF works properly
+* (+) Ensure all in the PDF works properly - control {} and invalid JSON for POST and non-existent name for GET 
 * (+) auth
 * (+) PostMan Collection with use cases (and export it &  link it)
 * (+) Acceptance tests
