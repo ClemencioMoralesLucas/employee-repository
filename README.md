@@ -325,8 +325,9 @@ The following aspects are a must-have:
 * (+) FINAL CHECK: Ensure all in the PDF works properly
 
 The following aspects would be a nice-to-have:
-* (-) fix zipkin warn
 * (-) Makefile to run springboot? (document it in readme)
 * (-) swagger doc
-* (-) Docker?
 * (-) Script for pushing - get to tha choppa
+* (-) fix zipkin warn
+* (-) Docker?
+* (+) FINAL DOUBLE-CHECK BEFORE DELIVERY: Ensure all in the PDF works properly
