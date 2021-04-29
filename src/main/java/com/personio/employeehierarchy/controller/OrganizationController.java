@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -22,7 +21,6 @@ import java.util.NoSuchElementException;
 @Slf4j
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/v1/organization")
 public class OrganizationController {
 
     public static final String INVALID_OR_EMPTY_JSON_MESSAGE = "Invalid or empty JSON";
@@ -30,7 +28,7 @@ public class OrganizationController {
 
     private final OrganizationService organizationService;
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/api/v1/organization", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Map<String, Map> setEmployees(@RequestBody final Map<String, String> employeesMap) {
         validateInputMap(employeesMap);
         log.info(this.getClass().getSimpleName() + "-> setOrganization: " + employeesMap);
@@ -39,7 +37,7 @@ public class OrganizationController {
                 .getRoot().map(List::of).orElse(List.of()));
     }
 
-    @GetMapping(value = "employee/{employeeName}/management",
+    @GetMapping(value = "/api/v1/organization/employee/{employeeName}/management",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Map<String, Map> getEmployee(@PathVariable(value = "employeeName") final String employeeName) {
         log.info(this.getClass().getSimpleName() + "-> getEmployee: " + employeeName);
