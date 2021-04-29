@@ -50,6 +50,8 @@ I want to send the name of an employee to an endpoint, and receive the name of t
 
 ## Examples
 
+The whole PostMan collection listed below can be imported from the path ```postman-collection/Employee Hierarchy.postman_collection.json```
+
 ##### 1 - Invalid JSON input for POST Organization (POST Endpoint - Unhappy Path - Cycles/Loops detected):
 
 ```
@@ -320,7 +322,6 @@ added to the project. After running ```mvn clean verify```, these reports can be
 ## TODO List
 
 The following aspects are a must-have:
-* (+) PostMan Collection with use cases (and export it &  link it)
 * (+) FINAL CHECK: Ensure all in the PDF works properly
 
 The following aspects would be a nice-to-have:

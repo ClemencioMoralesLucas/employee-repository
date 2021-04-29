@@ -1,0 +1,366 @@
+{
+	"info": {
+		"_postman_id": "81e64d02-31ef-4c29-b672-4dd63d2c9350",
+		"name": "Employee Hierarchy",
+		"description": "Contains the needed calls to test OrganizationController.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1 - Invalid JSON input - Cycles",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"Pete\": \"Nick\",\n\"Jonas\": \"Sophie\",\n\"Barbara\": \"Nick\",\n\"Nick\": \"Sophie\",\n\"Sophie\": \"Jonas\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/organization",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"organization"
+					]
+				},
+				"description": "##### 1 - Invalid JSON input for POST Organization (POST Endpoint - Unhappy Path - Cycles/Loops detected):\n"
+			},
+			"response": []
+		},
+		{
+			"name": "2 - Invalid JSON input - Multiple Roots",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"Pete\": \"Nick\",\n\"Barbara\": \"Nick\",\n\"Nick\": \"Sophie\",\n\"Sophie\": \"Jonas\",\n\"John\": \"Sarah\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/organization",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"organization"
+					]
+				},
+				"description": "##### 2 - Invalid JSON input for POST Organization (POST Endpoint - Unhappy Path - Multiple Roots detected):\n"
+			},
+			"response": []
+		},
+		{
+			"name": "3  - Malformed JSON input",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "this is not a JSON!",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/organization",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"organization"
+					]
+				},
+				"description": "##### 3 - Malformed JSON input for POST Organization (POST Endpoint - Unhappy Path - Not a JSON):\n"
+			},
+			"response": []
+		},
+		{
+			"name": "4 - Empty JSON input",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"Pete\": \"Nick\",\n\"Jonas\": \"Sophie\",\n\"Barbara\": \"Nick\",\n\"Nick\": \"Sophie\",\n\"Sophie\": \"Jonas\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/organization",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"organization"
+					]
+				},
+				"description": "##### 4 - Empty JSON input for POST Organization (POST Endpoint - Unhappy Path - Empty JSON not to be saved to avoid unnecessary db calls):\n"
+			},
+			"response": []
+		},
+		{
+			"name": "5 - Valid JSON input",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"Pete\": \"Nick\",\n\"Jonas\": \"Sophie\",\n\"Barbara\": \"Nick\",\n\"Nick\": \"Sophie\",\n\"Sophie\": \"Jonas\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/organization",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"organization"
+					]
+				},
+				"description": "##### 5 - Valid JSON input for POST Organization (POST Endpoint - Happy Path with sorted supervisor list):\n"
+			},
+			"response": []
+		},
+		{
+			"name": "6 - Valid JSON input - unsorted supervisor list",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"Pete\": \"Nick\",\n\"Barbara\": \"Nick\",\n\"Nick\": \"Sophie\",\n\"John\": \"Nick\",\n\"Sophie\": \"Jonas\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/organization",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"organization"
+					]
+				},
+				"description": "##### 6 - Valid JSON input for POST Organization (POST Endpoint - Happy Path with unsorted supervisor list - edge case):\n"
+			},
+			"response": []
+		},
+		{
+			"name": "7 - Get existent Employee ",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/organization/employee/Pete/management",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"organization",
+						"employee",
+						"Pete",
+						"management"
+					]
+				},
+				"description": "##### 7 - Getting employee-self hierarchy (GET Endpoint after executing - Happy Path with sorted supervisor list):\n"
+			},
+			"response": []
+		},
+		{
+			"name": "8 - Get non-existent Employee",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/organization/employee/someone/management",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"organization",
+						"employee",
+						"someone",
+						"management"
+					]
+				},
+				"description": "##### 8 - Getting employee-self hierarchy (GET Endpoint after executing - Unhappy Path with non-existent name):\n"
+			},
+			"response": []
+		}
+	]
+}
