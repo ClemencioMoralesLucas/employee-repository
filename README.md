@@ -320,7 +320,7 @@ added to the project. After running ```mvn clean verify```, these reports can be
 ## TODO List
 
 The following aspects are a must-have:
-* (+) Acceptance, smoke, IT tests
+* (+) Acceptance tests
 * (+) PostMan Collection with use cases (and export it &  link it)
 * (+) FINAL CHECK: Ensure all in the PDF works properly
 
