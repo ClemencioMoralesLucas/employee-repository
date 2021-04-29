@@ -201,42 +201,7 @@ HTTP Response:
   </a>
 </p>
 
-##### 6 - Valid JSON input for POST Organization (POST Endpoint - Happy Path with unsorted supervisor list - edge case):
-
-```
-{
-"Pete": "Nick",
-"Barbara": "Nick",
-"Nick": "Sophie",
-"John": "Nick",
-"Sophie": "Jonas"
-}
-```
-
-Actual Output:
-
-```
-{
-    "Jonas": {
-        "Sophie": {
-            "Nick": {
-                "Pete": {},
-                "Barbara": {},
-                "John": {}
-            }
-        }
-    }
-}
-```
-HTTP Response:
-
-<p align="center">
-  <a href="https://httpstatusdogs.com/200-ok">
-    <img alt="OK" title="OK" src="https://httpstatusdogs.com/img/200.jpg" width="450">
-  </a>
-</p>
-
-##### 7 - Getting employee-self hierarchy (GET Endpoint after executing - Happy Path with sorted supervisor list):
+##### 6 - Getting employee-self hierarchy (GET Endpoint after executing - Happy Path with sorted supervisor list):
 
 Query: ```http://localhost:8080/api/v1/organization/employee/Pete/management```
 
@@ -262,7 +227,7 @@ HTTP Response:
   </a>
 </p>
 
-##### 8 - Getting employee-self hierarchy (GET Endpoint after executing - Unhappy Path with non-existent name):
+##### 7 - Getting employee-self hierarchy (GET Endpoint after executing - Unhappy Path with non-existent name):
 
 Query: ```http://localhost:8080/api/v1/organization/employee/someone/management```
 
@@ -322,7 +287,10 @@ added to the project. After running ```mvn clean verify```, these reports can be
 ## TODO List
 
 The following aspects are a must-have:
-* (+) FINAL CHECK: Ensure all in the PDF works properly
+* CREATE HOW TO RUN THE APP SECTION (Just execute in Spring Boot, import 
+  the postman collection given and execute the requests.)
+* CREATE HOW TO EXECUTE UNIT TEST (mvn clean verify) and Acceptance
+  Tests from IDE (First run app, then AC)
 
 The following aspects would be a nice-to-have:
 * (-) Makefile to run springboot? (document it in readme)
