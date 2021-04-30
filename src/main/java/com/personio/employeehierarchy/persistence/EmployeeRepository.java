@@ -1,7 +1,6 @@
 package com.personio.employeehierarchy.persistence;
 
 import com.personio.employeehierarchy.domain.Employee;
-import org.springframework.cloud.sleuth.annotation.NewSpan;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -15,7 +14,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
         return findByName(name).orElseGet(() -> new Employee(name));
     }
 
-    @NewSpan
     default List<Employee> findRoots() {
         return findDistinctByManagerIsNull();
     }

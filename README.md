@@ -435,8 +435,9 @@ added to the project. After running ```mvn clean verify```, these reports can be
 
 ## TODO List
 
-The following aspects would be a nice-to-have for the future, but were not implemented yet:
-* (-) fix zipkin warn
-* (-) Docker?
 * (+) FINAL DOUBLE-CHECK BEFORE DELIVERY: Ensure all in the PDF works properly
-* (-) Enrich Makefile to run acceptance tests
+
+The following aspects would be a nice-to-have for the future, but were not implemented yet:
+* Dockerize the application.
+* Add Zipkin and Sleuth for monitoring.
+* Enrich Makefile to run acceptance tests.
