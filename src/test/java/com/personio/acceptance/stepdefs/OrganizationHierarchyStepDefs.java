@@ -41,7 +41,7 @@ public class OrganizationHierarchyStepDefs implements En {
 
             final var request = newBuilder(
                     create("http://localhost:" + applicationPort + ORGANIZATION_ENDPOINT))
-                    .header("Content-type", MediaType.APPLICATION_JSON_VALUE)
+                    .header("Content-Type", MediaType.APPLICATION_JSON_VALUE)
                     .header("Authorization", BASIC_AUTHORIZATION_USER_PASSWORD_BASE64)
                     .POST(organizationBodyPublisher).build();
 
