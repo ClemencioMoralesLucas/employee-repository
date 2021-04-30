@@ -24,6 +24,7 @@
 - [Introduction](#introduction)
 - [Features](#features)
 - [Swagger](#swagger)
+- [Running the application](#running-the-application)
 - [Examples](#examples)
 - [Assumptions](#assumptions)
 - [Notes](#notes)
@@ -58,6 +59,24 @@ has been added.
 
 Thanks to Swagger (an Interface Description Language for describing RESTful APIs expressed using JSON) the REST API
 can be accessed from: ```http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config```
+
+## Running the Application
+
+#### How to run the Spring Boot Application 
+
+* A ```Makefile```  has been added in order to smoothly run the Employee Hierarchy Application by running:
+```make run```. This will automatically launch the ```Spring Boot``` application, exposing its
+endpoints and making them available. The ```Makefile``` also allows ```make testAll``` in order to run
+all the tests except for the Acceptance suite.
+
+* In order to run the ```Acceptance Tests```, the command ```make run``` is to be executed first to 
+start the ```Spring Boot``` application. Once it is correctly started, the test 
+```src/test/java/com/personio/acceptance/AcceptanceTests.java``` can be executed from an ```IDE```.
+
+* If you prefer to launch the application from your favorite ```IDE``` just launch
+  ```src/main/java/com/personio/employeehierarchy/EmployeeHierarchyApplication.java```.  The
+  next section in this ```README.md``` file points to the ```POSTMan``` collection you can import to easily
+  play with the application. 
 
 ## Examples
 
@@ -416,14 +435,8 @@ added to the project. After running ```mvn clean verify```, these reports can be
 
 ## TODO List
 
-The following aspects are a must-have:
-* CREATE HOW TO RUN THE APP SECTION (Just execute in Spring Boot, import 
-  the postman collection given and execute the requests.)
-* CREATE HOW TO EXECUTE UNIT TEST (mvn clean verify) and Acceptance
-  Tests from IDE (First run app, then AC)
-
-The following aspects would be a nice-to-have:
-* (-) Makefile to run springboot? (document it in readme)
+The following aspects would be a nice-to-have for the future, but were not implemented yet:
 * (-) fix zipkin warn
 * (-) Docker?
 * (+) FINAL DOUBLE-CHECK BEFORE DELIVERY: Ensure all in the PDF works properly
+* (-) Enrich Makefile to run acceptance tests
