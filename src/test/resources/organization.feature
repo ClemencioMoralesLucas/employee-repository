@@ -1,18 +1,18 @@
 Feature: Business-related scenarios covering the must-have elements of the system.
 
-#  TODO HTTP 405
-#  Scenario: Organization hierarchy should be correctly configured
-#    Given we have set the following organization hierarchy:
-#      | employee        | supervisor       |
-#      | Sniper Wolf     | Liquid Snake     |
-#      | Vulkan          | Liquid Snake     |
-#      | Liquid Snake    | Big Boss         |
-#      | Big Boss        | Coronel          |
-#    When we check the organization hierarchy
-#    Then organization hierarchy is:
-#    """
-#      {"Coronel":{"Big Boss":{"Liquid Snake":{"Vulkan":{},"Sniper Wolf":{}}}}}
-#    """
+#  TODO FIX HTTP 405
+  Scenario: Organization hierarchy should be correctly configured
+    Given we have set the following organization hierarchy:
+      | employee        | supervisor       |
+      | Sniper Wolf     | Liquid Snake     |
+      | Vulkan          | Liquid Snake     |
+      | Liquid Snake    | Big Boss         |
+      | Big Boss        | Coronel          |
+    When we check the organization hierarchy
+    Then organization hierarchy is:
+    """
+      {"Coronel":{"Big Boss":{"Liquid Snake":{"Vulkan":{},"Sniper Wolf":{}}}}}
+    """
 
   Scenario: Application should return the management chain for an employee
     When we check the management chain for "Vulkan"
