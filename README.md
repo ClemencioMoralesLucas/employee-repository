@@ -23,6 +23,7 @@
 
 - [Introduction](#introduction)
 - [Features](#features)
+- [Swagger](#swagger)
 - [Examples](#examples)
 - [Assumptions](#assumptions)
 - [Notes](#notes)
@@ -47,6 +48,15 @@ Avoid nonsense hierarchies that contain loops or multiple roots.
 I would really like it if the hierarchy could be stored in a relational database.
 ##### 5 
 I want to send the name of an employee to an endpoint, and receive the name of the supervisor and the name of the supervisor’s supervisor in return.
+
+## Swagger
+
+In order to use the REST API (and apart from [PostMan](https://www.postman.com/)), the 
+[Swagger](https://www.swagger.io/) UI with [Open API](https://www.openapis.org/)
+has been added.
+
+Thanks to Swagger (an Interface Description Language for describing RESTful APIs expressed using JSON) the REST API
+can be accessed from: ```http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config```
 
 ## Examples
 
@@ -251,6 +261,82 @@ HTTP Response:
   </a>
 </p>
 
+##### 8 - Swagger - Open API Documentation
+
+Query: ```http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config```
+
+Actual Output:
+
+```
+<!-- HTML for static distribution bundle build -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Swagger UI</title>
+	<link rel="stylesheet" type="text/css" href="./swagger-ui.css">
+	<link rel="icon" type="image/png" href="./favicon-32x32.png" sizes="32x32" />
+	<link rel="icon" type="image/png" href="./favicon-16x16.png" sizes="16x16" />
+	<style>
+		html {
+			box-sizing: border-box;
+			overflow: -moz-scrollbars-vertical;
+			overflow-y: scroll;
+		}
+
+		*,
+		*:before,
+		*:after {
+			box-sizing: inherit;
+		}
+
+		body {
+			margin: 0;
+			background: #fafafa;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="swagger-ui"></div>
+
+	<script src="./swagger-ui-bundle.js" charset="UTF-8"> </script>
+	<script src="./swagger-ui-standalone-preset.js" charset="UTF-8"> </script>
+	<script>
+		window.onload = function() {
+      // Begin Swagger UI call region
+      const ui = SwaggerUIBundle({
+        url: "https://petstore.swagger.io/v2/swagger.json",
+        dom_id: '#swagger-ui',
+        deepLinking: true,
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIStandalonePreset
+        ],
+        plugins: [
+          SwaggerUIBundle.plugins.DownloadUrl
+        ],
+        layout: "StandaloneLayout"
+      })
+      // End Swagger UI call region
+
+      window.ui = ui
+    }
+	</script>
+</body>
+
+</html>
+```
+
+HTTP Response:
+
+<p align="center">
+  <a href="https://httpstatusdogs.com/200-ok">
+    <img alt="OK" title="OK" src="https://httpstatusdogs.com/img/200.jpg" width="450">
+  </a>
+</p>
+
 ## Assumptions
 
 * Every employee name is unique and cannot be duplicated.
@@ -294,7 +380,6 @@ The following aspects are a must-have:
 
 The following aspects would be a nice-to-have:
 * (-) Makefile to run springboot? (document it in readme)
-* (-) swagger doc
 * (-) Script for pushing - get to tha choppa
 * (-) fix zipkin warn
 * (-) Docker?

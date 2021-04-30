@@ -315,6 +315,48 @@
 				"description": "##### 7 - Getting employee-self hierarchy (GET Endpoint after executing - Unhappy Path with non-existent name):\n"
 			},
 			"response": []
+		},
+		{
+			"name": "8 - Swagger-OpenAPI Documentation",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"swagger-ui",
+						"index.html"
+					],
+					"query": [
+						{
+							"key": "configUrl",
+							"value": "/v3/api-docs/swagger-config"
+						}
+					]
+				},
+				"description": "##### 8 - Swagger - Open API Documentation"
+			},
+			"response": []
 		}
 	]
 }
