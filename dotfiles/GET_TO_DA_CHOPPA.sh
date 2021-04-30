@@ -154,7 +154,7 @@ if mvn clean verify | grep -q "BUILD SUCCESS"; then
   __msg_info "GETTING TO DA CHOPPA!!!!!!!!!"
   printArnold
   afplay dotfiles/resources/get_to_da_choppa.mp3
-#  git commit -m commit_message
+  git commit -m commit_message
 
 #  In case you are pushing towards a real repo, uncomment these lines:
 #  current_branch_name=$(git rev-parse --abbrev-ref HEAD)

@@ -27,6 +27,7 @@
 - [Examples](#examples)
 - [Assumptions](#assumptions)
 - [Notes](#notes)
+- [Scripts](#scripts)
 - [TODO](#todo)
 
 ## Introduction
@@ -369,6 +370,49 @@ added to the project. After running ```mvn clean verify```, these reports can be
  It was possible to achieve this index creation in one fell swoop during the init
  script, ```schema.sql```, thanks to adding the flag ```mode=mysql``` to the datasource url in 
  ```application.yml```.
+ 
+## Scripts
+ 
+ The directory ```dotfiles``` is intended for any useful script. It contains
+ the BASH script ```GET_TO_DA_CHOPPA``` as a funny way of pushing a new ```commit``` 
+ to the ```master```  branch. In a nutshell, the script will only ```commit```
+ and subsequently ```push``` if ```mvn clean verify``` finishes with 
+ ```BUILD SUCCESS```. 
+ 
+ To run it, just execute the following command from the terminal line:
+ 
+  ```sh dotfiles/GET_TO_DA_CHOPPA.sh <YOUR_COMMIT_MESSAGE>"```
+ 
+ If all the test are running fine, you should hear a cool ```MP3``` voice message, and see the ```ASCII``` art:
+ 
+ ```
+                      ______
+                    <((((((\\\
+                    /      . }\
+                    ;--..--._|}
+ (\                 '--/\--'  )
+  \\                | '-'  :'|
+   \\               . -==- .-|
+    \\               \.__.'   \--._
+    [\\          __.--|       //  _/'--.
+    \ \\       .'-._ ('-----'/ __/      \
+     \ \\     /   __>|      | '--.       |
+      \ \\   |   \   |     /    /       /
+       \ '\ /     \  |     |  _/       /
+        \  \       \ |     | /        /
+         \  \      \        /`
+```
+ Otherwise...I will let you discover it! 👻
+ 
+ As a side note, the script is inspired on the great action film **Predator**. (A 1987 American 
+ science fiction action horror film directed by John McTiernan featuring
+ Arnold Schwarzenegger.) 
+ 
+ If you want to remember the ```GET_TO_DA_CHOPPA``` scene, just click on the image
+ below to watch the video! 😉
+ 
+ [![Watch the video](https://www.iceposter.com/thumbs/MOV_4b7a51e7_b.jpg)](https://youtu.be/Xs_OacEq2Sk)
+
 
 ## TODO List
 
@@ -380,7 +424,6 @@ The following aspects are a must-have:
 
 The following aspects would be a nice-to-have:
 * (-) Makefile to run springboot? (document it in readme)
-* (-) Script for pushing - get to tha choppa
 * (-) fix zipkin warn
 * (-) Docker?
 * (+) FINAL DOUBLE-CHECK BEFORE DELIVERY: Ensure all in the PDF works properly
