@@ -73,8 +73,9 @@ public class OrganizationControllerTestIT {
 
     @Test
     @Transactional
-    public void itShouldSetOrganization() {
+    public void itShouldSetAndGetOrganizationConsistently() {
         assertThat(organizationController.setEmployees(employeesBeforeUpdate), is(hierarchyBeforeUpdate));
+        assertThat(organizationController.getOrganization(), is(hierarchyBeforeUpdate));
     }
 
     @Test

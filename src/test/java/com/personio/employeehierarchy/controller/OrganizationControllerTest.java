@@ -99,6 +99,16 @@ class OrganizationControllerTest {
     }
 
     @Test
+    public void itShouldForwardCallToServiceWhenGettingOrganization() {
+        when(organizationServiceMock.getRoot())
+                .thenReturn(Optional.of(new Employee(GRAY_FOX_NAME)));
+        assertThat(organizationController.getOrganization(),
+                is(Collections.unmodifiableMap(Map.of(GRAY_FOX_NAME, Map.of()))));
+        verify(organizationServiceMock).getRoot();
+        verifyNoMoreInteractions(organizationServiceMock);
+    }
+
+    @Test
     public void itShouldReturnInvalidOrganizationExceptionWhenGettingNonExistentEmployee() {
         final Exception exception = assertThrows(NotFoundEmployeeException.class, () -> {
             organizationController.getEmployee(NON_EXISTENT_EMPLOYEE);

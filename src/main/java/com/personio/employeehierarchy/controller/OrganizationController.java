@@ -49,6 +49,13 @@ public class OrganizationController {
         }
     }
 
+    @GetMapping(value = "/api/v1/organization", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Map<String, Map> getOrganization() {
+        log.info(this.getClass().getSimpleName() + "-> getOrganization");
+        return HierarchicalOrganization.assembleTopDownHierarchy(organizationService
+                .getRoot().map(List::of).orElse(List.of()));
+    }
+
     private void validateInputMap(final Map<String, String> employeesMap) {
         if(CollectionUtils.isEmpty(employeesMap)) {
             throw new InvalidOrganizationException(INVALID_OR_EMPTY_JSON_MESSAGE);
