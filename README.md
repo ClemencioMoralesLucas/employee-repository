@@ -21,8 +21,8 @@
 
 ## Table of Contents
 
+- [Requisites](#requisites)
 - [Introduction](#introduction)
-- [Features](#features)
 - [Swagger](#swagger)
 - [Running the application](#running-the-application)
 - [Examples](#examples)
@@ -31,25 +31,80 @@
 - [Scripts](#scripts)
 - [TODO](#todo)
 
+## Requisites 
+
+Jane Doe weekly receives a JSON of employees and supervisors from his boss, Jack.
+Jack keeps modifying his company, and Jane would like to have a tool to increase her 
+understanding about the employee hierarchy. Moreover, this tool should allow her to identify
+ who is the boss of a given employee.
+
+Jane’s requirements are the following:
+<ol>
+<li>
+As the company organizer, I need a pure REST API to post the JSON received from Jack. 
+The JSON structure represents an Employee - Boss connection, like:
+
+```
+{
+"James": "Matt",
+"Amy": "Matt",
+"Matt": "Leah",
+"Leah": "Tom"
+}
+```
+
+For the example above, Matt is a supervisor of James and Amy, while Leah is the supervisor 
+of Matt. It is remarkable that this list might not be in order.
+</li>
+
+<li>
+The endpoint should return a valid JSON reflecting the hierarchy in a way where the 
+most senior boss is at the top of the JSON nested structure. Thus, the previous JSON is 
+expected to return:
+
+```
+{
+    "Tom": {
+        "Leah": {
+            "Matt": {
+                "James": {},
+                "Amy": {}
+            }
+        }
+    }
+}
+```
+
+Please note that Jack could give nonsense hierarchies containing loops or multiple roots,
+ so the endpoint needs to identify these mistakes and inform them in the most meaningful way 
+ with consistent HTTP codes.
+</li>
+
+<li>
+The given hierarchy is expected to be stored in a relational database (for instance, PostgreSQL), 
+so it can receive  queries to fetch the supervisor and the supervisor’s supervisor of any employee. 
+For instance, if an employee name is forwarded to an endpoint, it should return the name of 
+the supervisor and the name of the supervisor’s supervisor as a response.
+</li>
+
+<li>
+<p>The API is expected to be secured with user and password.</p>
+</li>
+
+</ol>
+
+**Additional Notes:**
+
+<ol>
+    <li><p>The application shall be developed applying TDD, Clean Code and Extreme Programming (XP). The less code, the better.</p></li>
+    <li><p>A clear README.md is to be included in the project, with clear instructions.</p></li>
+    <li><p>Unit/Integration/Functional tests to be implemented covering all needed scenarios.</p></li>
+</ol>
+
 ## Introduction
 
 This microservice, written in ```Java 11```, exposes a ```REST API``` that persist data inside a ```H2 Database``` according to 
 the ```Hierarchy GmbH``` specs.
-
-## Features
-
-This repository fulfills the following business-written features:
-
-##### 1
-I would like a pure REST API to post the JSON from Chris. I would like to have a properly formatted JSON which reflects the employee hierarchy.
-##### 2
-I would like the API to be secure so that only I can use it.
-##### 3 
-Avoid nonsense hierarchies that contain loops or multiple roots.
-##### 4 
-I would really like it if the hierarchy could be stored in a relational database.
-##### 5 
-I want to send the name of an employee to an endpoint, and receive the name of the supervisor and the name of the supervisor’s supervisor in return.
 
 ## Swagger
 
