@@ -71,10 +71,10 @@ all the tests except for the Acceptance suite.
 
 * In order to run the ```Acceptance Tests```, the command ```make run``` is to be executed first to 
 start the ```Spring Boot``` application. Once it is correctly started, the test 
-```src/test/java/com/personio/acceptance/AcceptanceTests.java``` can be executed from an ```IDE```.
+```src/test/java/com/company/acceptance/AcceptanceTests.java``` can be executed from an ```IDE```.
 
 * If you prefer to launch the application from your favorite ```IDE``` just launch
-  ```src/main/java/com/personio/employeehierarchy/EmployeeHierarchyApplication.java```.  The
+  ```src/main/java/com/company/employeehierarchy/EmployeeHierarchyApplication.java```.  The
   next section in this ```README.md``` file points to the ```POSTMan``` collection you can import to easily
   play with the application. 
 
